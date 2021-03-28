@@ -64,8 +64,8 @@ class App:
     def GButton_990_command(self):
         print("Stop")
         #add code here
-        os.chdir('desktop')
-        os.system(r"cd desktop")
+        os.chdir("desktop")
+        os.system("cd desktop")
 
 if __name__ == "__main__":
     root = tk.Tk()
