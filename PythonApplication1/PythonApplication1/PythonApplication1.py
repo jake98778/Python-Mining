@@ -51,22 +51,24 @@ class App:
     def GButton_245_command(self):
         print("Start")
         #add code here
-        os.system("cd desktop")
-        os.system("cd mine")
+        os.system("@echo off")
+        #missing cd to the correct location and then set gpu peramiters.
+        
         os.system("setx GPU_FORCE_64BIT_PTR 0")
         os.system("setx GPU_MAX_HEAP_SIZE 100")
         os.system("setx GPU_USE_SYNC_OBJECTS 1")
         os.system("setx GPU_MAX_ALLOC_PERCENT 100")
         os.system("setx GPU_SINGLE_ALLOC_PERCENT 100")
+
         #need to edit below to be the work name. For now this works for tetsing
         os.system("ethminer -P stratum1+tcp://0xE3A8103F0c2E17E1AD0bc6935b1D35FB38470C82.deployment@naw-eth.hiveon.net:4444 --report-hashrate")
 
     def GButton_990_command(self):
-        print("Stop")
+        print("supposed to stop n shet")
         #add code here
-        os.chdir("desktop")
-        os.system("cd desktop")
-
+        os.system("Jake is the best XD")
+        os.system("@echo off")
+        os.system("quit()")
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
