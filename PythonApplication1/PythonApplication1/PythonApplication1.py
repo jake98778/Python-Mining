@@ -19,6 +19,15 @@ def miner_start():
         #need to edit below to be the work name. For now this works for tetsing
         os.system("ethminer -P stratum1+tcp://0xE3A8103F0c2E17E1AD0bc6935b1D35FB38470C82.deployment@naw-eth.hiveon.net:4444 --report-hashrate")
 
+#sets switch to 0 to start program which is miner off
+switch = 0
+class switch_check():
+    if switch < 1:
+        print("miner is off hoe")
+    
+    if switch > 0:
+        print("miner is on.....hoe")
+
 class App:
     def __init__(self, root):
         #setting title
@@ -74,9 +83,12 @@ class App:
     def GButton_990_command(self):
         print("supposed to stop n shet")
         #add code here
-        os.system("Jake is the best XD")
-        os.system("@echo off")
-        os.system("quit()")
+        switch = 0
+        print(switch_check)
+
+        #not working at the moment. Need to look into stoping a thread more and go that route. It works to start though so yay
+        
+
 if __name__ == "__main__":
     root = tk.Tk()
     app = App(root)
