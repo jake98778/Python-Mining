@@ -20,13 +20,7 @@ def miner_start():
         os.system("ethminer -P stratum1+tcp://0xE3A8103F0c2E17E1AD0bc6935b1D35FB38470C82.deployment@naw-eth.hiveon.net:4444 --report-hashrate")
 
 #sets switch to 0 to start program which is miner off
-switch = 0
-class switch_check():
-    if switch < 1:
-        print("miner is off hoe")
-    
-    if switch > 0:
-        print("miner is on.....hoe")
+#removed for now. 
 
 class App:
     def __init__(self, root):
@@ -72,7 +66,7 @@ class App:
         GMessage_683.place(x=230,y=120,width=176,height=64)
 
     def GButton_245_command(self):
-        print("Start")
+        print("Start button pressed")
         #add code here
         #missing cd to the correct location and then set gpu peramiters.
         
@@ -81,10 +75,10 @@ class App:
         print("thread started yay")
 
     def GButton_990_command(self):
-        print("supposed to stop n shet")
+        print("stop button pressed")
         #add code here
-        switch = 0
-        print(switch_check)
+        os.system("TASKKILL /F /IM cmd.exe /T")
+        #OMG IT WORKS. Probably closes all kinds of shit but it works so who cares. 
 
         #not working at the moment. Need to look into stoping a thread more and go that route. It works to start though so yay
         
