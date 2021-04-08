@@ -9,6 +9,16 @@ import sys
 #import for threading
 import threading
 
+#Here is where Veribles are defined
+
+
+
+#switch off is 0. Switch on is 1
+Switch = 0
+
+
+
+
 def miner_start():
         os.system("setx GPU_FORCE_64BIT_PTR 0")
         os.system("setx GPU_MAX_HEAP_SIZE 100")
@@ -34,6 +44,15 @@ class App:
         alignstr = '%dx%d+%d+%d' % (width, height, (screenwidth - width) / 2, (screenheight - height) / 2)
         root.geometry(alignstr)
         root.resizable(width=False, height=False)
+
+
+        #starting to mess with switch stuff
+        switch = 0
+        if switch < 1:
+            switch_text = "On"
+        else:
+            switch_text = "off"
+
 
         #creating buttons and UI content
 
@@ -65,11 +84,21 @@ class App:
         GMessage_683["text"] = "Note: Make sure to stop this program when playing games"
         GMessage_683.place(x=230,y=120,width=176,height=64)
 
+        GMessage_683=tk.Message(root)
+        ft = tkFont.Font(family='Times',size=10)
+        GMessage_683["font"] = ft
+        GMessage_683["fg"] = "#333333"
+        GMessage_683["justify"] = "center"
+        GMessage_683["text"] = "Program is" ,Switch
+        GMessage_683.place(x=230,y=200,width=176,height=64)
+
     def GButton_245_command(self):
         print("Start button pressed")
         #add code here
-        #missing cd to the correct location and then set gpu peramiters.
-        
+
+        #changes switch value to 1
+        swtich = 1
+        #start thread for miner to run in
         thread = threading.Thread(target=miner_start, args=[])
         thread.start()
         print("thread started yay")
@@ -79,6 +108,9 @@ class App:
         #add code here
         os.system("TASKKILL /F /IM cmd.exe /T")
         #OMG IT WORKS. Probably closes all kinds of shit but it works so who cares. 
+
+        #edit switch value
+        switch = 0
 
         #not working at the moment. Need to look into stoping a thread more and go that route. It works to start though so yay
         
