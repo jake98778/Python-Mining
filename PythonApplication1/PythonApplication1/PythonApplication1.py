@@ -14,7 +14,7 @@ import threading
 
 
 #switch off is 0. Switch on is 1
-Switch = 0
+switch = 0
 
 
 
@@ -47,10 +47,9 @@ class App:
 
 
         #starting to mess with switch stuff
-        switch = 0
-        if switch < 1:
+        if (switch == 1):
             switch_text = "On"
-        else:
+        if (switch == 0):
             switch_text = "off"
 
 
@@ -89,7 +88,7 @@ class App:
         GMessage_683["font"] = ft
         GMessage_683["fg"] = "#333333"
         GMessage_683["justify"] = "center"
-        GMessage_683["text"] = "Program is" ,Switch
+        GMessage_683["text"] = "Program is" , switch_text
         GMessage_683.place(x=230,y=200,width=176,height=64)
 
     def GButton_245_command(self):
@@ -98,7 +97,7 @@ class App:
 
         #changes switch value to 1
         switch = 1
-        print(str(switch))
+        print(switch_text)
         #start thread for miner to run in
         thread = threading.Thread(target=miner_start, args=[])
         thread.start()
@@ -106,12 +105,12 @@ class App:
 
     def GButton_990_command(self):
         print("stop button pressed")
+        #edit switch value
+        switch = 0
+        print(switch_text)
         #add code here
         os.system("TASKKILL /F /IM cmd.exe /T")
         #OMG IT WORKS. Probably closes all kinds of shit but it works so who cares. 
-
-        #edit switch value
-        switch = 0
 
         #not working at the moment. Need to look into stoping a thread more and go that route. It works to start though so yay
         
