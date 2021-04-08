@@ -97,7 +97,8 @@ class App:
         #add code here
 
         #changes switch value to 1
-        swtich = 1
+        switch = 1
+        print(str(switch))
         #start thread for miner to run in
         thread = threading.Thread(target=miner_start, args=[])
         thread.start()
