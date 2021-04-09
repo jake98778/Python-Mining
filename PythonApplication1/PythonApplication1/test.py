@@ -10,7 +10,7 @@ pyglet.font.add_file('8bit.TTF')
 
 #Setting Up the UI
 root = Tk()
-root.title("Gamer Miner")
+root.title("Gamer Miner (ALPHA v0.1)")
 root.iconbitmap('icon.ico')
 root.resizable(width=False, height=False)
 root.geometry("800x500")
@@ -33,16 +33,17 @@ workerNameTxtFile = open("workerName.txt", "r+")
 #Button Images
 offButtonImg = PhotoImage(file=r"offButton.png")
 onButtonImg = PhotoImage(file=r"onButton.png")
+submitButtonImg = PhotoImage(file=r"submitButton.png")
 
 #Miner Status Label
-label = Label(root, textvariable=var, bg="#232027", fg="#ebe3f2", font='8bit.TTF')
+statusLabel = Label(root, textvariable=var, bg="#232027", fg="#ebe3f2", font='8bit.TTF')
 var.set("Status: OFF")
 
 #Text Entry Field
-L1 = Label(root, text="Enter Your Name:", relief=FLAT, bg="#232027", fg="#ebe3f2")
-L1.place(x=290, y=400)
+L1 = Label(root, text="Enter Miner Name:", relief=FLAT, bg="#232027", fg="#ebe3f2")
+L1.place(x=240, y=400)
 E1 = Entry(root, bd=2, relief=FLAT, bg="#232027", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
-E1.place(x=400, y=400)
+E1.place(x=350, y=400)
 
 ###################################################
 
@@ -61,6 +62,14 @@ def submit():
         workerNameTxtFile.write(nameEntry)
         workerName.set("Miner Name: " + nameEntry)
         print(">>Worker Name: " + nameEntry)
+
+
+def submitButtonEnter(e):
+    submitButton['background'] = 'black'
+
+
+def submitButtonLeave(e):
+    submitButton['background'] = 'grey'
 
 
 ###CMD Commands
@@ -119,7 +128,7 @@ def offButtonLeave(e):
 
 onButton = Button(root, image=onButtonImg, command=turnOn, highlightthickness=0, bd=0)
 offButton = Button(root, image=offButtonImg, command=turnOff, highlightthickness=0, bd=0)
-submitButton = Button(root, text="SUBMIT", command=submit)
+submitButton = Button(root, image=submitButtonImg, command=submit, highlightthickness=0, bd=0)
 
 onButton.bind("<Enter>", onButtonEnter)
 onButton.bind("<Leave>", onButtonLeave)
@@ -127,13 +136,16 @@ onButton.bind("<Leave>", onButtonLeave)
 offButton.bind("<Enter>", offButtonEnter)
 offButton.bind("<Leave>", offButtonLeave)
 
+submitButton.bind("<Enter>", submitButtonEnter)
+submitButton.bind("<Leave>", submitButtonLeave)
+
 
 ################################################################
 #Placing the UI Elements
-onButton.place(x=200, y=200)
-offButton.place(x=425, y=200)
-label.place(relx=.5, y=175, anchor="center")
-submitButton.place(relx=.5, y=460, anchor="center")
+onButton.place(x=150, y=200)
+offButton.place(x=475, y=200)
+statusLabel.place(relx=.5, y=248, anchor="center")
+submitButton.place(x=520, y=410, anchor="center")
 
 #Worker Name Text Display
 workerNameLabel = Label(root, textvariable=workerName, bg="#232027", fg="#ebe3f2")
