@@ -10,7 +10,7 @@ pyglet.font.add_file('8bit.TTF')
 
 #Setting Up the UI
 root = Tk()
-root.title("Gamer Miner (ALPHA v0.1)")
+root.title("Gamer Miner | 0.1")
 root.iconbitmap('icon.ico')
 root.resizable(width=False, height=False)
 root.geometry("800x500")
@@ -25,6 +25,7 @@ bgLabel = Label(root, image=bg)
 bgLabel.place(x=0, y=0, relwidth=1, relheight=1)
 
 #Variables
+version = "Gamer Miner (ALPHA v0.1)"
 global nameEntry
 var = StringVar()
 workerName = StringVar()
@@ -42,7 +43,7 @@ var.set("Status: OFF")
 #Text Entry Field
 L1 = Label(root, text="Enter Miner Name:", relief=FLAT, bg="#232027", fg="#ebe3f2")
 L1.place(x=240, y=400)
-E1 = Entry(root, bd=2, relief=FLAT, bg="#232027", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
+E1 = Entry(root, bd=2, relief=FLAT, bg="#40444B", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
 E1.place(x=350, y=400)
 
 ###################################################
@@ -57,13 +58,14 @@ def submit():
     #Check if they have not entered a worker name
     if nameEntry == "":
         print("User has not entered a worker name.")
-        messagebox.showinfo("Gamer Miner", "Please enter a miner name so you can receive payouts.")
+        messagebox.showinfo(version, "Please enter a miner name so you can receive payouts.")
     else:
         workerNameTxtFile.write(nameEntry)
         workerName.set("Miner Name: " + nameEntry)
         print(">>Worker Name: " + nameEntry)
 
 
+#Button Hover FX
 def submitButtonEnter(e):
     submitButton['background'] = 'black'
 
@@ -94,15 +96,16 @@ def turnOn():
     # Check if they have not entered a worker name
     if nameEntry == "":
         print("User has not entered a worker name.")
-        messagebox.showinfo("Gamer Miner", "Please enter a miner name so you can receive payouts.")
+        messagebox.showinfo(version, "Please enter a miner name so you can receive payouts.")
     else:
         var.set("Status: MINING")
         thread = threading.Thread(target=miner_start, args=[])
         thread.start()
         print("(+) Bot started mining...")
-        messagebox.showinfo("", "If you are getting a pop-up message from Windows Defender, please allow this program so that you can start mining.")
+        messagebox.showinfo(version, "If you are getting a pop-up message from Windows Defender, please allow this program so that you can start mining.")
 
 
+#Button Hover FX
 def onButtonEnter(e):
     onButton['background'] = 'black'
 
@@ -118,6 +121,7 @@ def turnOff():
     print("(-) Bot has stopped mining.")
 
 
+#Button Hover FX
 def offButtonEnter(e):
     offButton['background'] = 'black'
 
@@ -143,7 +147,7 @@ submitButton.bind("<Leave>", submitButtonLeave)
 ################################################################
 #Placing the UI Elements
 onButton.place(x=150, y=200)
-offButton.place(x=475, y=200)
+offButton.place(x=470, y=200)
 statusLabel.place(relx=.5, y=248, anchor="center")
 submitButton.place(x=520, y=410, anchor="center")
 
