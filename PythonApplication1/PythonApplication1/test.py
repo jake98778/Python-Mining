@@ -25,6 +25,14 @@ root = Tk()
 root.title("Crypto Miner (v0.1)   Coded By: Jake & Matt")
 root.resizable(width=False, height=False)
 root.geometry("500x300")
+
+#Background Picture
+bg = PhotoImage(file="bg.png")
+
+# Show Background Image using Label
+bgLabel = Label( root, image = bg)
+bgLabel.place(x = -2, y = -2)
+
 var = StringVar()
 workerName = StringVar()
 label = Label( root, textvariable=var)
@@ -83,5 +91,4 @@ workerNameLabel = Label( root, textvariable=workerName)
 workerName.set("Miner Name:")
 workerNameLabel.place(x=0, y=175)
 
-root['bg'] = '#49A'
 root.mainloop()
