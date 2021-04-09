@@ -19,18 +19,13 @@ def miner_start():
 
 #Setting Up the UI
 root = Tk()
-root.title("Crypto Miner (v0.1)")
+root.title("Crypto Miner (v0.1)   Coded By: Jake & Matt")
 root.resizable(width=False, height=False)
-root.geometry("450x300")
+root.geometry("500x300")
 var = StringVar()
 workerName = StringVar()
 label = Label( root, textvariable=var)
 var.set("Program is turned off.")
-
-#Worker Name Text Display
-workerNameLabel = Label( root, textvariable=workerName)
-workerName.set("Your Miner Name:")
-workerNameLabel.pack()
 
 #Text Entry Field
 L1 = Label(root, text="Enter Your Name:")
@@ -42,8 +37,8 @@ E1.pack(side=LEFT)
 #Submit
 def submit():
     input = E1.get()
-    workerName.set("Your Miner Name: " + str(input))
-    print("Worker Name: " + str(input) + "")
+    workerName.set("Miner Name: " + str(input))
+    print(">>Worker Name: " + str(input) + "")
 
 
 #Turning the Miner On
@@ -51,7 +46,7 @@ def turnOn():
     var.set("Program is running.")
     thread = threading.Thread(target=miner_start, args=[])
     thread.start()
-    print("Bot started mining...")
+    print("(+) Bot started mining...")
 
 
 onButton = Button(root, text ="TURN ON", command = turnOn)
@@ -61,19 +56,24 @@ onButton = Button(root, text ="TURN ON", command = turnOn)
 def turnOff():
     var.set("Program is stopped.")
     os.system("TASKKILL /F /IM cmd.exe /T")
-    print("Bot has stopped mining.")
+    print("(-) Bot has stopped mining.")
 
 
 offButton = Button(root, text ="TURN OFF", command = turnOff)
 
 #Submit Entry Field Text Button
 submitButton = Button(root, text ="SUBMIT", command = submit)
-
+submitButton.place(x=230, y=135)
 
 ################################################################
 #Packing the UI Elements
-onButton.pack()
-offButton.pack()
-label.pack()
-submitButton.pack()
+onButton.place(x=100, y=40)
+offButton.place(x=350, y=40)
+label.place(x=100, y=10)
+
+#Worker Name Text Display
+workerNameLabel = Label( root, textvariable=workerName)
+workerName.set("Miner Name:")
+workerNameLabel.place(x=0, y=175)
+
 root.mainloop()
