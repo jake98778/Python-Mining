@@ -1,8 +1,11 @@
 import os
 import threading
+import pyglet
 from tkinter import *
 from tkinter import messagebox
-from playsound import playsound
+
+#Importing Pixel Style Font
+pyglet.font.add_file('8bit.TTF')
 
 
 #Setting Up the UI
@@ -15,7 +18,7 @@ root.geometry("800x500")
 ##############################################################
 
 #Background Picture
-bg = PhotoImage(file="bg.png")
+bg = PhotoImage(file="BG.png")
 
 # Show Background Image using Label
 bgLabel = Label(root, image=bg)
@@ -32,14 +35,14 @@ offButtonImg = PhotoImage(file=r"offButton.png")
 onButtonImg = PhotoImage(file=r"onButton.png")
 
 #Miner Status Label
-label = Label( root, textvariable=var)
-var.set("Miner is turned off.")
+label = Label(root, textvariable=var, bg="#232027", fg="#ebe3f2", font='8bit.TTF')
+var.set("Status: OFF")
 
 #Text Entry Field
-L1 = Label(root, text="Enter Your Name:")
-L1.place(x=290, y=350)
-E1 = Entry(root, bd=2)
-E1.place(x=400, y=350)
+L1 = Label(root, text="Enter Your Name:", relief=FLAT, bg="#232027", fg="#ebe3f2")
+L1.place(x=290, y=400)
+E1 = Entry(root, bd=2, relief=FLAT, bg="#232027", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
+E1.place(x=400, y=400)
 
 ###################################################
 
@@ -48,7 +51,6 @@ E1.place(x=400, y=350)
 
 ###Submit
 def submit():
-    playsound('button.mp3')
     global nameEntry
     nameEntry = E1.get()
     #Check if they have not entered a worker name
@@ -85,36 +87,57 @@ def turnOn():
         print("User has not entered a worker name.")
         messagebox.showinfo("Gamer Miner", "Please enter a miner name so you can receive payouts.")
     else:
-        var.set("Miner is running.")
+        var.set("Status: MINING")
         thread = threading.Thread(target=miner_start, args=[])
         thread.start()
         print("(+) Bot started mining...")
-        playsound('button.mp3')
         messagebox.showinfo("", "If you are getting a pop-up message from Windows Defender, please allow this program so that you can start mining.")
+
+
+def onButtonEnter(e):
+    onButton['background'] = 'black'
+
+
+def onButtonLeave(e):
+    onButton['background'] = 'grey'
 
 
 ###Turning the Miner Off
 def turnOff():
-    var.set("Miner has stopped.")
+    var.set("Status: OFF")
     os.system("TASKKILL /F /IM cmd.exe /T")
     print("(-) Bot has stopped mining.")
-    playsound('button.mp3')
+
+
+def offButtonEnter(e):
+    offButton['background'] = 'black'
+
+
+def offButtonLeave(e):
+    offButton['background'] = 'grey'
 
 
 onButton = Button(root, image=onButtonImg, command=turnOn, highlightthickness=0, bd=0)
 offButton = Button(root, image=offButtonImg, command=turnOff, highlightthickness=0, bd=0)
 submitButton = Button(root, text="SUBMIT", command=submit)
 
+onButton.bind("<Enter>", onButtonEnter)
+onButton.bind("<Leave>", onButtonLeave)
+
+offButton.bind("<Enter>", offButtonEnter)
+offButton.bind("<Leave>", offButtonLeave)
+
+
 ################################################################
 #Placing the UI Elements
 onButton.place(x=200, y=200)
 offButton.place(x=425, y=200)
 label.place(relx=.5, y=175, anchor="center")
-submitButton.place(relx=.5, y=430, anchor="center")
+submitButton.place(relx=.5, y=460, anchor="center")
 
 #Worker Name Text Display
-workerNameLabel = Label( root, textvariable=workerName)
+workerNameLabel = Label(root, textvariable=workerName, bg="#232027", fg="#ebe3f2")
 workerName.set("Miner Name: " + str(workerNameTxtFile.read()))
-workerNameLabel.place(relx=.5, y=470, anchor="center")
+workerNameLabel.place(relx=.5, y=360, anchor="center")
 
 root.mainloop()
