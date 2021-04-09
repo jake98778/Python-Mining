@@ -31,11 +31,10 @@ def miner_start():
 
 #sets switch to 0 to start program which is miner off
 #removed for now. 
-
 class App:
     def __init__(self, root):
         #setting title
-        root.title("undefined")
+        root.title("Crypto Miner v0.1")
         #setting window size
         width=600
         height=500
@@ -75,6 +74,12 @@ class App:
         GButton_990.place(x=280,y=70,width=70,height=25)
         GButton_990["command"] = self.GButton_990_command
 
+        # Program is Running Text
+        text = tk.StringVar()
+        text.set("Test")
+        label = tk.Label(root, textvariable=self.text)
+        label.pack()
+
         GMessage_683=tk.Message(root)
         ft = tkFont.Font(family='Times',size=10)
         GMessage_683["font"] = ft
@@ -82,14 +87,6 @@ class App:
         GMessage_683["justify"] = "center"
         GMessage_683["text"] = "Note: Make sure to stop this program when playing games"
         GMessage_683.place(x=230,y=120,width=176,height=64)
-
-        GMessage_683=tk.Message(root)
-        ft = tkFont.Font(family='Times',size=10)
-        GMessage_683["font"] = ft
-        GMessage_683["fg"] = "#333333"
-        GMessage_683["justify"] = "center"
-        GMessage_683["text"] = "Program is" , switch_text
-        GMessage_683.place(x=230,y=200,width=176,height=64)
 
     def GButton_245_command(self):
         print("Start button pressed")
