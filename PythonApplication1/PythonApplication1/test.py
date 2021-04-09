@@ -25,7 +25,7 @@ root.geometry("500x300")
 var = StringVar()
 workerName = StringVar()
 label = Label( root, textvariable=var)
-var.set("Program is turned off.")
+var.set("Miner is turned off.")
 
 #Text Entry Field
 L1 = Label(root, text="Enter Your Name:")
@@ -43,7 +43,7 @@ def submit():
 
 #Turning the Miner On
 def turnOn():
-    var.set("Program is running.")
+    var.set("Miner is running.")
     thread = threading.Thread(target=miner_start, args=[])
     thread.start()
     print("(+) Bot started mining...")
@@ -54,7 +54,7 @@ onButton = Button(root, text ="TURN ON", command = turnOn)
 
 #Turning the Miner Off
 def turnOff():
-    var.set("Program is stopped.")
+    var.set("Miner has stopped.")
     os.system("TASKKILL /F /IM cmd.exe /T")
     print("(-) Bot has stopped mining.")
 
@@ -68,7 +68,7 @@ submitButton.place(x=230, y=135)
 ################################################################
 #Packing the UI Elements
 onButton.place(x=100, y=40)
-offButton.place(x=350, y=40)
+offButton.place(x=170, y=40)
 label.place(x=100, y=10)
 
 #Worker Name Text Display
@@ -76,4 +76,5 @@ workerNameLabel = Label( root, textvariable=workerName)
 workerName.set("Miner Name:")
 workerNameLabel.place(x=0, y=175)
 
+root['bg'] = '#49A'
 root.mainloop()
