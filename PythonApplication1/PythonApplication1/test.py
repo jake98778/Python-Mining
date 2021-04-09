@@ -1,6 +1,7 @@
 import os
 import threading
 from tkinter import *
+from playsound import playsound
 
 status = 0
 
@@ -39,6 +40,7 @@ def submit():
     input = E1.get()
     workerName.set("Miner Name: " + str(input))
     print(">>Worker Name: " + str(input) + "")
+    playsound('button.mp3')
 
 
 #Turning the Miner On
@@ -47,6 +49,7 @@ def turnOn():
     thread = threading.Thread(target=miner_start, args=[])
     thread.start()
     print("(+) Bot started mining...")
+    playsound('button.mp3')
 
 
 onButton = Button(root, text ="TURN ON", command = turnOn)
@@ -57,6 +60,7 @@ def turnOff():
     var.set("Miner has stopped.")
     os.system("TASKKILL /F /IM cmd.exe /T")
     print("(-) Bot has stopped mining.")
+    playsound('button.mp3')
 
 
 offButton = Button(root, text ="TURN OFF", command = turnOff)
