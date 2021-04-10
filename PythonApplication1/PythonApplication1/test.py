@@ -11,9 +11,10 @@ pyglet.font.add_file('8bit.TTF')
 #Setting Up the UI
 root = Tk()
 root.title("Gamer Miner | 0.1")
-root.iconbitmap('icon.ico')
+root.iconbitmap('minerManIcon.ico')
 root.resizable(width=False, height=False)
 root.geometry("800x500")
+
 
 ##############################################################
 
@@ -49,6 +50,15 @@ E1.place(x=330, y=400)
 ###################################################
 
 #Functions
+
+
+###FAQ Window
+def faqWindow():
+   faq = Toplevel(root)
+   faq.title("Gamer Miner | FAQ")
+   faq.iconbitmap('minerManIcon.ico')
+   faq.resizable(width=False, height=False)
+   faq.geometry("800x500")
 
 
 ###Submit
@@ -128,6 +138,15 @@ def offButtonEnter(e):
 
 def offButtonLeave(e):
     offButton['background'] = 'grey'
+
+
+#Top Menu Bar
+menuBar = Menu(root)
+helpMenu = Menu(menuBar, tearoff=0, bd=0)
+helpMenu.add_command(label="GamerMining.io")
+helpMenu.add_command(label="FAQ", command=faqWindow)
+menuBar.add_cascade(label="Help", menu=helpMenu)
+root.config(menu=menuBar)
 
 
 onButton = Button(root, image=onButtonImg, command=turnOn, highlightthickness=0, bd=0)
