@@ -42,9 +42,9 @@ var.set("Status: OFF")
 
 #Text Entry Field
 L1 = Label(root, text="Enter Miner Name:", relief=FLAT, bg="#232027", fg="#ebe3f2")
-L1.place(x=240, y=400)
-E1 = Entry(root, bd=2, relief=FLAT, bg="#40444B", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
-E1.place(x=350, y=400)
+L1.place(x=220, y=402)
+E1 = Entry(root, bd=5, relief=FLAT, bg="#40444B", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
+E1.place(x=330, y=400)
 
 ###################################################
 
@@ -149,7 +149,7 @@ submitButton.bind("<Leave>", submitButtonLeave)
 onButton.place(x=150, y=200)
 offButton.place(x=470, y=200)
 statusLabel.place(relx=.5, y=248, anchor="center")
-submitButton.place(x=520, y=410, anchor="center")
+submitButton.place(x=530, y=413, anchor="center")
 
 #Worker Name Text Display
 workerNameLabel = Label(root, textvariable=workerName, bg="#232027", fg="#ebe3f2")
