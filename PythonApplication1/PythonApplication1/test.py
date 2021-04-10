@@ -1,6 +1,7 @@
 import os
 import threading
 import pyglet
+import webbrowser
 from tkinter import *
 from tkinter import messagebox
 
@@ -20,13 +21,14 @@ root.geometry("800x500")
 
 #Background Picture
 bg = PhotoImage(file="BG.png")
+underConstructionIMG = PhotoImage(file="underConstruction.png")
 
 # Show Background Image using Label
 bgLabel = Label(root, image=bg)
 bgLabel.place(x=0, y=0, relwidth=1, relheight=1)
 
 #Variables
-version = "Gamer Miner (ALPHA v0.1)"
+version = "Gamer Miner | 0.1"
 global nameEntry
 var = StringVar()
 workerName = StringVar()
@@ -59,6 +61,13 @@ def faqWindow():
    faq.iconbitmap('minerManIcon.ico')
    faq.resizable(width=False, height=False)
    faq.geometry("800x500")
+   FAQbg = Label(faq, image=underConstructionIMG)
+   FAQbg.place(x=0, y=0, relwidth=1, relheight=1)
+
+
+###Opening our Website URL
+def ourWebsite():
+    webbrowser.open("https://www.investopedia.com/tech/how-does-bitcoin-mining-work/", new=2, autoraise=True)
 
 
 ###Submit
@@ -143,7 +152,7 @@ def offButtonLeave(e):
 #Top Menu Bar
 menuBar = Menu(root)
 helpMenu = Menu(menuBar, tearoff=0, bd=0)
-helpMenu.add_command(label="GamerMining.io")
+helpMenu.add_command(label="GamerMining.io", command=ourWebsite)
 helpMenu.add_command(label="FAQ", command=faqWindow)
 menuBar.add_cascade(label="Help", menu=helpMenu)
 root.config(menu=menuBar)
