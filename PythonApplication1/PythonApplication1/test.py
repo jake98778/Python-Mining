@@ -45,9 +45,9 @@ var.set("Status: OFF")
 
 #Text Entry Field
 L1 = Label(root, text="Enter Miner Name:", relief=FLAT, bg="#232027", fg="#ebe3f2")
-L1.place(x=220, y=402)
-E1 = Entry(root, bd=5, relief=FLAT, bg="#40444B", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027")
-E1.place(x=330, y=400)
+L1.place(x=200, y=402)
+E1 = Entry(root, bd=2, relief=FLAT, bg="#40444B", fg="#ebe3f2", selectbackground="#ebe3f2", selectforeground="#232027", font="Calibri 12")
+E1.place(x=310, y=400)
 
 ###################################################
 
@@ -63,6 +63,7 @@ def faqWindow():
    faq.geometry("800x500")
    FAQbg = Label(faq, image=underConstructionIMG)
    FAQbg.place(x=0, y=0, relwidth=1, relheight=1)
+   faq.focus_set()
 
 
 ###Opening our Website URL
@@ -79,6 +80,7 @@ def submit():
         print("User has not entered a worker name.")
         messagebox.showinfo(version, "Please enter a miner name to receive payouts.")
     else:
+        workerNameTxtFile.truncate()
         workerNameTxtFile.write(nameEntry)
         workerName.set("Miner Name: " + nameEntry)
         print(">>Worker Name: " + nameEntry)
@@ -152,9 +154,11 @@ def offButtonLeave(e):
 #Top Menu Bar
 menuBar = Menu(root)
 helpMenu = Menu(menuBar, tearoff=0, bd=0)
+settingsMenu = Menu(menuBar, tearoff=0, bd=0)
+menuBar.add_cascade(label="Settings", menu=settingsMenu)
+menuBar.add_cascade(label="Help", menu=helpMenu)
 helpMenu.add_command(label="GamerMining.io", command=ourWebsite)
 helpMenu.add_command(label="FAQ", command=faqWindow)
-menuBar.add_cascade(label="Help", menu=helpMenu)
 root.config(menu=menuBar)
 
 
@@ -177,7 +181,7 @@ submitButton.bind("<Leave>", submitButtonLeave)
 onButton.place(x=150, y=200)
 offButton.place(x=470, y=200)
 statusLabel.place(relx=.5, y=248, anchor="center")
-submitButton.place(x=530, y=413, anchor="center")
+submitButton.place(x=540, y=413, anchor="center")
 
 #Worker Name Text Display
 workerNameLabel = Label(root, textvariable=workerName, bg="#232027", fg="#ebe3f2")
