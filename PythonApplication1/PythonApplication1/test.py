@@ -58,7 +58,7 @@ def submit():
     #Check if they have not entered a worker name
     if nameEntry == "":
         print("User has not entered a worker name.")
-        messagebox.showinfo(version, "Please enter a miner name so you can receive payouts.")
+        messagebox.showinfo(version, "Please enter a miner name to receive payouts.")
     else:
         workerNameTxtFile.write(nameEntry)
         workerName.set("Miner Name: " + nameEntry)
@@ -96,13 +96,13 @@ def turnOn():
     # Check if they have not entered a worker name
     if nameEntry == "":
         print("User has not entered a worker name.")
-        messagebox.showinfo(version, "Please enter a miner name so you can receive payouts.")
+        messagebox.showinfo(version, "Please enter a miner name to receive payouts.")
     else:
         var.set("Status: MINING")
         thread = threading.Thread(target=miner_start, args=[])
         thread.start()
         print("(+) Bot started mining...")
-        messagebox.showinfo(version, "If you are getting a pop-up message from Windows Defender, please allow this program so that you can start mining.")
+        messagebox.showinfo(version, "Please allow Gamer Miner through your anti-virus to start mining.")
 
 
 #Button Hover FX
